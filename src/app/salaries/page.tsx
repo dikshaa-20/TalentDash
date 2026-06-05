@@ -6,7 +6,12 @@ import {
   useSearchParams,
 } from "next/navigation";
 
-import { useEffect, useState } from "react";
+import {
+  Suspense,
+  useEffect,
+  useState,
+} from "react";
+
 import SalarySchema from "@/components/seo/SalarySchema";
 import SalaryTable from "@/components/features/SalaryTable";
 import SalaryFilters from "@/components/features/SalaryFilters";
@@ -16,7 +21,7 @@ import { salaryData } from "@/lib/mock-data";
 
 const PAGE_SIZE = 15;
 
-export default function SalariesPage() {
+function SalariesContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -167,6 +172,7 @@ export default function SalariesPage() {
   return (
     <main className="mx-auto max-w-7xl p-8">
       <SalarySchema />
+
       <h1 className="mb-6 text-4xl font-bold">
         Software Engineer Salaries
       </h1>
@@ -180,7 +186,7 @@ export default function SalariesPage() {
         setLocation={setLocation}
       />
 
-      <div className="mt-6 ">
+      <div className="mt-6">
         <h2 className="mb-2 font-semibold">
           Levels
         </h2>
@@ -268,5 +274,13 @@ export default function SalariesPage() {
         />
       </div>
     </main>
+  );
+}
+
+export default function SalariesPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SalariesContent />
+    </Suspense>
   );
 }
