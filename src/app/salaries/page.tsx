@@ -19,7 +19,7 @@ import Pagination from "@/components/features/Pagination";
 
 import { salaryData } from "@/lib/mock-data";
 
-const PAGE_SIZE = 15;
+const PAGE_SIZE = 25;
 
 function SalariesContent() {
   const router = useRouter();
