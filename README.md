@@ -14,4 +14,4 @@ The platform provides a fast and searchable salary database where users can:
   <li>Access SEO-optimized salary pages for discoverability</li>
 </ul>
 
-<h1>Features</h1>
+
