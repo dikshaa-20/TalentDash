@@ -21,79 +21,108 @@ export default function SalaryTable({
 
   if (data.length === 0) {
     return (
-      <div className="rounded-lg border p-10 text-center">
-        <h2 className="mb-2 text-xl font-semibold">
-          No records found
+      <div className="rounded-3xl bg-white p-12 text-center shadow-md">
+        <h2 className="mb-2 text-2xl font-bold text-gray-900">
+          No Records Found
         </h2>
 
-        <p>
-          Try removing some filters.
+        <p className="text-gray-500">
+          Try changing your filters.
         </p>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto rounded-lg border">
-      <table className="w-full border-collapse">
-        <thead className="sticky top-16 bg-slate-100">
-          <tr className="bg-slate-100 text-left">
-            <th className="p-4">Company</th>
-            <th className="p-4">Role</th>
-            <th className="p-4">Level</th>
-            <th className="p-4">Location</th>
-            <th className="p-4">Experience</th>
-            <th className="p-4">Base Salary</th>
-            <th className="p-4">Stock</th>
-            <th className="p-4">Total Comp</th>
-          </tr>
-        </thead>
+    <div className="overflow-hidden rounded-3xl bg-white shadow-md">
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead>
+            <tr className="bg-gray-100 text-left text-sm uppercase tracking-wide text-gray-600">
+              <th className="p-4">
+                Company
+              </th>
 
-        <tbody>
-          {data.map((salary) => (
-            <tr
-              key={salary.id}
-              className="border-t hover:bg-slate-50"
-            >
-              <td className="p-4 font-medium">
-                {salary.company}
-              </td>
+              <th className="p-4">
+                Role
+              </th>
 
-              <td className="p-4">
-                {salary.role}
-              </td>
+              <th className="p-4">
+                Level
+              </th>
 
-              <td className="p-4">
-                <Badge level={salary.level} />
-              </td>
+              <th className="p-4">
+                Location
+              </th>
 
-              <td className="p-4">
-                {salary.location}
-              </td>
+              <th className="p-4">
+                Experience
+              </th>
 
-              <td className="p-4">
-                {salary.experience} yrs
-              </td>
+              <th className="p-4">
+                Base Salary
+              </th>
 
-              <td className="p-4">
-                {convert(salary.baseSalary)}
-              </td>
+              <th className="p-4">
+                Stock
+              </th>
 
-              <td className="p-4">
-                {salary.stock
-                  ? convert(salary.stock)
-                  : "—"}
-              </td>
-
-              <td className="p-4 text-lg font-bold text-sky-700">
-                {convert(
-                  salary.totalCompensation
-                )}
-              </td>
+              <th className="p-4">
+                Total Comp
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {data.map((salary) => (
+              <tr
+                key={salary.id}
+                className="border-t transition hover:bg-pink-50"
+              >
+                <td className="p-4 font-semibold text-gray-900">
+                  {salary.company}
+                </td>
+
+                <td className="p-4 text-gray-700">
+                  {salary.role}
+                </td>
+
+                <td className="p-4">
+                  <Badge level={salary.level} />
+                </td>
+
+                <td className="p-4 text-gray-700">
+                  {salary.location}
+                </td>
+
+                <td className="p-4 text-gray-700">
+                  {salary.experience} yrs
+                </td>
+
+                <td className="p-4 font-medium">
+                  {convert(
+                    salary.baseSalary
+                  )}
+                </td>
+
+                <td className="p-4 font-medium">
+                  {salary.stock
+                    ? convert(
+                        salary.stock
+                      )
+                    : "—"}
+                </td>
+
+                <td className="p-4 text-lg font-bold text-pink-600">
+                  {convert(
+                    salary.totalCompensation
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

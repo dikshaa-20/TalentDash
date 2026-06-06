@@ -10,20 +10,26 @@ export default function Pagination({
   onPageChange,
 }: Props) {
   return (
-    <div className="mt-6 flex items-center gap-4">
+    <div className="mt-8 flex items-center justify-center gap-4">
       <button
         onClick={() =>
           onPageChange(currentPage - 1)
         }
         disabled={currentPage === 1}
-        className="rounded border px-4 py-2"
+        className={`rounded-xl px-5 py-2 font-medium shadow transition ${
+          currentPage === 1
+            ? "cursor-not-allowed bg-gray-200 text-gray-400"
+            : "bg-white text-gray-800 hover:bg-pink-50"
+        }`}
       >
-        Previous
+        ← Previous
       </button>
 
-      <span>
-        Page {currentPage} of {totalPages}
-      </span>
+      <div className="rounded-xl bg-white px-6 py-2 shadow">
+        <span className="font-semibold text-gray-700">
+          Page {currentPage} of {totalPages}
+        </span>
+      </div>
 
       <button
         onClick={() =>
@@ -32,9 +38,13 @@ export default function Pagination({
         disabled={
           currentPage === totalPages
         }
-        className="rounded border px-4 py-2"
+        className={`rounded-xl px-5 py-2 font-medium shadow transition ${
+          currentPage === totalPages
+            ? "cursor-not-allowed bg-gray-200 text-gray-400"
+            : "bg-white text-gray-800 hover:bg-pink-50"
+        }`}
       >
-        Next
+        Next →
       </button>
     </div>
   );

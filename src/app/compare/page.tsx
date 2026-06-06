@@ -46,15 +46,7 @@ export default function ComparePage() {
     (item) => item.id === levelBId
   );
 
-  if (!recordA || !recordB) {
-    return (
-      <main className="p-8">
-        <h1 className="text-3xl font-bold">
-          Compare Salaries
-        </h1>
-      </main>
-    );
-  }
+  if (!recordA || !recordB) return null;
 
   const delta =
     recordA.totalCompensation -
@@ -66,291 +58,270 @@ export default function ComparePage() {
       : recordB.company;
 
   return (
-    <main className="mx-auto max-w-7xl p-8">
-      <h1 className="mb-8 text-4xl font-bold">
-        Compare Salaries
-      </h1>
+    <main className="min-h-screen bg-[#f8f5f4] p-8">
+      <div className="mx-auto max-w-7xl">
+        <h1 className="mb-2 text-5xl font-bold text-gray-900">
+          Compare Salaries
+        </h1>
 
-      <div className="mb-8 grid gap-6 md:grid-cols-2">
-        <div>
-          <label className="mb-2 block font-semibold">
-            Company A
-          </label>
-
-          <select
-            value={companyA}
-            onChange={(e) =>
-              setCompanyA(
-                e.target.value
-              )
-            }
-            className="mb-3 w-full rounded border p-3"
-          >
-            {companies.map(
-              (company) => (
-                <option
-                  key={company}
-                  value={company}
-                >
-                  {company}
-                </option>
-              )
-            )}
-          </select>
-
-          <select
-            value={levelAId}
-            onChange={(e) =>
-              setLevelAId(
-                e.target.value
-              )
-            }
-            className="w-full rounded border p-3"
-          >
-            {levelsA.map(
-              (record) => (
-                <option
-                  key={record.id}
-                  value={record.id}
-                >
-                  {record.level} •{" "}
-                  {record.role}
-                </option>
-              )
-            )}
-          </select>
-        </div>
-
-        <div>
-          <label className="mb-2 block font-semibold">
-            Company B
-          </label>
-
-          <select
-            value={companyB}
-            onChange={(e) =>
-              setCompanyB(
-                e.target.value
-              )
-            }
-            className="mb-3 w-full rounded border p-3"
-          >
-            {companies.map(
-              (company) => (
-                <option
-                  key={company}
-                  value={company}
-                >
-                  {company}
-                </option>
-              )
-            )}
-          </select>
-
-          <select
-            value={levelBId}
-            onChange={(e) =>
-              setLevelBId(
-                e.target.value
-              )
-            }
-            className="w-full rounded border p-3"
-          >
-            {levelsB.map(
-              (record) => (
-                <option
-                  key={record.id}
-                  value={record.id}
-                >
-                  {record.level} •{" "}
-                  {record.role}
-                </option>
-              )
-            )}
-          </select>
-        </div>
-      </div>
-
-      <div className="overflow-hidden rounded-lg border">
-        <table className="w-full">
-          <tbody>
-            <tr className="border-b bg-slate-100">
-              <td className="p-4 font-bold">
-                Field
-              </td>
-
-              <td className="p-4 font-bold">
-                {recordA.company}
-              </td>
-
-              <td className="p-4 font-bold">
-                {recordB.company}
-              </td>
-            </tr>
-
-            <tr className="border-b">
-              <td className="p-4">
-                Role
-              </td>
-
-              <td className="p-4">
-                {recordA.role}
-              </td>
-
-              <td className="p-4">
-                {recordB.role}
-              </td>
-            </tr>
-
-            <tr className="border-b">
-              <td className="p-4">
-                Level
-              </td>
-
-              <td className="p-4">
-                {recordA.level}
-              </td>
-
-              <td className="p-4">
-                {recordB.level}
-              </td>
-            </tr>
-
-            <tr className="border-b">
-              <td className="p-4">
-                Location
-              </td>
-
-              <td className="p-4">
-                {recordA.location}
-              </td>
-
-              <td className="p-4">
-                {recordB.location}
-              </td>
-            </tr>
-
-            <tr className="border-b">
-              <td className="p-4">
-                Experience
-              </td>
-
-              <td className="p-4">
-                {recordA.experience} yrs
-              </td>
-
-              <td className="p-4">
-                {recordB.experience} yrs
-              </td>
-            </tr>
-
-            <tr className="border-b">
-              <td className="p-4">
-                Base Salary
-              </td>
-
-              <td className="p-4">
-                ₹
-                {recordA.baseSalary.toLocaleString(
-                  "en-IN"
-                )}
-              </td>
-
-              <td className="p-4">
-                ₹
-                {recordB.baseSalary.toLocaleString(
-                  "en-IN"
-                )}
-              </td>
-            </tr>
-
-            <tr className="border-b">
-              <td className="p-4">
-                Bonus
-              </td>
-
-              <td className="p-4">
-                {recordA.bonus === 0
-                  ? "—"
-                  : `₹${recordA.bonus.toLocaleString(
-                      "en-IN"
-                    )}`}
-              </td>
-
-              <td className="p-4">
-                {recordB.bonus === 0
-                  ? "—"
-                  : `₹${recordB.bonus.toLocaleString(
-                      "en-IN"
-                    )}`}
-              </td>
-            </tr>
-
-            <tr className="border-b">
-              <td className="p-4">
-                Stock
-              </td>
-
-              <td className="p-4">
-                {recordA.stock === 0
-                  ? "—"
-                  : `₹${recordA.stock.toLocaleString(
-                      "en-IN"
-                    )}`}
-              </td>
-
-              <td className="p-4">
-                {recordB.stock === 0
-                  ? "—"
-                  : `₹${recordB.stock.toLocaleString(
-                      "en-IN"
-                    )}`}
-              </td>
-            </tr>
-
-            <tr className="bg-slate-50">
-              <td className="p-4 font-bold">
-                Total Compensation
-              </td>
-
-              <td className="p-4 text-lg font-bold text-sky-700">
-                ₹
-                {recordA.totalCompensation.toLocaleString(
-                  "en-IN"
-                )}
-              </td>
-
-              <td className="p-4 text-lg font-bold text-sky-700">
-                ₹
-                {recordB.totalCompensation.toLocaleString(
-                  "en-IN"
-                )}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div className="mt-8 rounded-lg border p-6">
-        <h2 className="mb-3 text-xl font-bold">
-          Comparison Result
-        </h2>
-
-        <p
-          className={`text-xl font-bold ${
-            delta >= 0
-              ? "text-green-600"
-              : "text-red-600"
-          }`}
-        >
-          Delta: ₹
-          {Math.abs(delta).toLocaleString(
-            "en-IN"
-          )}
+        <p className="mb-8 text-gray-600">
+          Compare compensation packages
+          across companies and levels.
         </p>
 
-        <div className="mt-4 inline-block rounded bg-sky-700 px-4 py-2 text-white">
-          Higher TC: {winner}
+        {/* Selectors */}
+        <div className="mb-8 grid gap-6 md:grid-cols-2">
+          <div className="rounded-3xl bg-white p-6 shadow-md">
+            <h2 className="mb-4 text-xl font-bold">
+              Company A
+            </h2>
+
+            <select
+              value={companyA}
+              onChange={(e) =>
+                setCompanyA(
+                  e.target.value
+                )
+              }
+              className="mb-4 w-full rounded-xl border border-gray-200 bg-gray-50 p-3"
+            >
+              {companies.map(
+                (company) => (
+                  <option
+                    key={company}
+                    value={company}
+                  >
+                    {company}
+                  </option>
+                )
+              )}
+            </select>
+
+            <select
+              value={levelAId}
+              onChange={(e) =>
+                setLevelAId(
+                  e.target.value
+                )
+              }
+              className="w-full rounded-xl border border-gray-200 bg-gray-50 p-3"
+            >
+              {levelsA.map(
+                (record) => (
+                  <option
+                    key={record.id}
+                    value={record.id}
+                  >
+                    {record.level} •{" "}
+                    {record.role}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+
+          <div className="rounded-3xl bg-white p-6 shadow-md">
+            <h2 className="mb-4 text-xl font-bold">
+              Company B
+            </h2>
+
+            <select
+              value={companyB}
+              onChange={(e) =>
+                setCompanyB(
+                  e.target.value
+                )
+              }
+              className="mb-4 w-full rounded-xl border border-gray-200 bg-gray-50 p-3"
+            >
+              {companies.map(
+                (company) => (
+                  <option
+                    key={company}
+                    value={company}
+                  >
+                    {company}
+                  </option>
+                )
+              )}
+            </select>
+
+            <select
+              value={levelBId}
+              onChange={(e) =>
+                setLevelBId(
+                  e.target.value
+                )
+              }
+              className="w-full rounded-xl border border-gray-200 bg-gray-50 p-3"
+            >
+              {levelsB.map(
+                (record) => (
+                  <option
+                    key={record.id}
+                    value={record.id}
+                  >
+                    {record.level} •{" "}
+                    {record.role}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+        </div>
+
+        {/* Winner Card */}
+        <div className="mb-8 rounded-3xl bg-white p-6 shadow-md">
+          <h2 className="mb-4 text-xl font-bold">
+            Comparison Result
+          </h2>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <p className="text-sm text-gray-500">
+                Difference
+              </p>
+
+              <p
+                className={`text-3xl font-bold ${
+                  delta >= 0
+                    ? "text-green-600"
+                    : "text-red-600"
+                }`}
+              >
+                ₹
+                {Math.abs(
+                  delta
+                ).toLocaleString(
+                  "en-IN"
+                )}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-sm text-gray-500">
+                Winner
+              </p>
+
+              <span className="inline-block rounded-full bg-pink-500 px-5 py-2 font-semibold text-white">
+                🏆 {winner}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Comparison Table */}
+        <div className="overflow-hidden rounded-3xl bg-white shadow-md">
+          <table className="w-full">
+            <tbody>
+              <tr className="bg-gray-100 font-semibold">
+                <td className="p-4">
+                  Field
+                </td>
+                <td className="p-4">
+                  {recordA.company}
+                </td>
+                <td className="p-4">
+                  {recordB.company}
+                </td>
+              </tr>
+
+              {[
+                [
+                  "Role",
+                  recordA.role,
+                  recordB.role,
+                ],
+                [
+                  "Level",
+                  recordA.level,
+                  recordB.level,
+                ],
+                [
+                  "Location",
+                  recordA.location,
+                  recordB.location,
+                ],
+                [
+                  "Experience",
+                  `${recordA.experience} yrs`,
+                  `${recordB.experience} yrs`,
+                ],
+                [
+                  "Base Salary",
+                  `₹${recordA.baseSalary.toLocaleString(
+                    "en-IN"
+                  )}`,
+                  `₹${recordB.baseSalary.toLocaleString(
+                    "en-IN"
+                  )}`,
+                ],
+                [
+                  "Bonus",
+                  recordA.bonus
+                    ? `₹${recordA.bonus.toLocaleString(
+                        "en-IN"
+                      )}`
+                    : "—",
+                  recordB.bonus
+                    ? `₹${recordB.bonus.toLocaleString(
+                        "en-IN"
+                      )}`
+                    : "—",
+                ],
+                [
+                  "Stock",
+                  recordA.stock
+                    ? `₹${recordA.stock.toLocaleString(
+                        "en-IN"
+                      )}`
+                    : "—",
+                  recordB.stock
+                    ? `₹${recordB.stock.toLocaleString(
+                        "en-IN"
+                      )}`
+                    : "—",
+                ],
+              ].map((row) => (
+                <tr
+                  key={row[0]}
+                  className="border-t hover:bg-pink-50"
+                >
+                  <td className="p-4 font-medium">
+                    {row[0]}
+                  </td>
+
+                  <td className="p-4">
+                    {row[1]}
+                  </td>
+
+                  <td className="p-4">
+                    {row[2]}
+                  </td>
+                </tr>
+              ))}
+
+              <tr className="border-t bg-pink-50">
+                <td className="p-4 font-bold">
+                  Total Compensation
+                </td>
+
+                <td className="p-4 text-xl font-bold text-pink-600">
+                  ₹
+                  {recordA.totalCompensation.toLocaleString(
+                    "en-IN"
+                  )}
+                </td>
+
+                <td className="p-4 text-xl font-bold text-pink-600">
+                  ₹
+                  {recordB.totalCompensation.toLocaleString(
+                    "en-IN"
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </main>
