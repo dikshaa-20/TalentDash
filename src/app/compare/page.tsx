@@ -58,7 +58,7 @@ export default function ComparePage() {
       : recordB.company;
 
   return (
-    <main className="min-h-screen bg-[#f8f5f4] p-8">
+    <main className="min-h-screen bg-[#f8f5f4] px-4 py-8 md:p-8">
       <div className="mx-auto max-w-7xl">
         <h1 className="mb-2 text-5xl font-bold text-gray-900">
           Compare Salaries
